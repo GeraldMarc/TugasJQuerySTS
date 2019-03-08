@@ -5,12 +5,14 @@
     <title>Tugas JQuery - @yield('title')</title>
     <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <style>
+        .clickable:hover{
+            cursor: pointer;
+        }
         .main-image{
             width: 150px;
             margin: 3px;
             display: block;
         }
-
         .product-image{
             width: 50px;
             margin: 3px;
