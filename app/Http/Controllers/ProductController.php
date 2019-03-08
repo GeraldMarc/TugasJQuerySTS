@@ -38,7 +38,7 @@ class ProductController extends Controller
 
     public function Store(Request $request){
         $product = new Product();
-        $product->sku = $request->sku;
+        $product->sku = str_random(10);
         $product->name = $request->name;
         $product->description = $request->description;
         $product->unit_price = $request->unit_price;
@@ -48,12 +48,12 @@ class ProductController extends Controller
         
         return response()->json([
                     'message' => 'success',
+                    'data' => $product,
                 ], 200);
     }
 
     public function Update(Request $request, $product_id){
         $product = Product::find($product_id);
-        $product->sku = $request->sku;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->unit_price = $request->unit_price;
@@ -61,7 +61,8 @@ class ProductController extends Controller
         $product->save();
 
         return response()->json([
-            'message' => 'success'
+            'message' => 'success',
+            'data' => $product,
         ], 200);
     }
 
