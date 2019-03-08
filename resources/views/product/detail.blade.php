@@ -22,7 +22,6 @@
 @section('script')
     <script>
         function setMainImage(image_id){
-            console.log(image_id);
             $.ajax({
                 url: '/api/ProductImage/SetMainImage/'+image_id,
                 type: 'PUT',
@@ -57,7 +56,7 @@
                             //LOAD SISA IMAGENYA
                             $.each(images.data, function(index, image){
                                 if(image.main_image == false){                                
-                                    $('#product_detail > tbody').append('<img class="product-image" src="' + image.product_image_url + '" onclick="setMainImage('+image.id+')">');
+                                    $('#product_detail > tbody').append('<img class="clickable product-image" src="' + image.product_image_url + '" onclick="setMainImage('+image.id+')">');
                                 }
                             });
                             $('#product_detail > tbody').append(    '</td>'
