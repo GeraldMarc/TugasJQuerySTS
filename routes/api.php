@@ -28,7 +28,7 @@ Route::group(['middleware' => 'api'], function() {
 
     Route::prefix('ProductImage')->group(function () {
         Route::get('GetWithParam/{product_id}/', 'ProductImageController@GetWithParam');
-        Route::post('Store/', 'ProductImageController@Store');
+        Route::post('Store/{product_id}', 'ProductImageController@Store');
         Route::put('SetMainImage/{id}/', 'ProductImageController@SetMainImage');
         Route::delete('Delete/{id}/', 'ProductImageController@Delete');
     });

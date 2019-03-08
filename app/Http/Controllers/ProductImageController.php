@@ -16,12 +16,40 @@ class ProductImageController extends Controller
         ], 200);
     }
 
-    public function Store(Request $request){
-        $image = new ProductImage();
-        $image->product_image_url = $request->product_image_url;
-        $image->main_image = $request->main_image;
-        $image->product_id = $request->product_id;
-        $image->save();
+    public function Store(Request $request, $product_id){
+        // PROCESS MAIN IMAGE
+        $main_file_name = "";
+        if($request->hasFile('main_product_image'))
+        {
+            $main_file = $request->file('main_product_image');
+            $main_file_name = time() . '-' . $main_file->getClientOriginalName();
+            $main_file_path = 'product_images/';
+            $main_file->move($main_file_path,$main_file_name);
+
+            $image = new ProductImage();
+            $image->product_image_url = $main_file_name;
+            $image->main_image = true;
+            $image->product_id = $product_id;
+            $image->save();
+        }
+
+        // PROCESS ADDITIONAL PRODUCT IMAGES
+        $file_name = "";
+        if($request->hasFile('product_image_list'))
+        {
+            $files = $request->file('product_image_list');
+            foreach($files as $file){
+                $file_name = time() . '-' . $file->getClientOriginalName();
+                $file_path = 'product_images/';
+                $file->move($file_path,$file_name);
+
+                $image = new ProductImage();
+                $image->product_image_url = $file_name;
+                $image->main_image = false;
+                $image->product_id = $product_id;
+                $image->save();
+            }
+        }
 
         return response()->json([
             'message' => 'success'

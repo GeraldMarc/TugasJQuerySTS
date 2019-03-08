@@ -22,11 +22,11 @@
 @section('script')
     <script>
         function addProduct(){
-            window.location.href('www.google.com');
+            window.location.href = '{{url("Product/Add/")}}';
         }
 
         function editProduct(product_id){
-            window.location.href('www.youtube.com');
+            window.location.href = 'www.youtube.com';
         }
 
         function deleteProduct(product_id){

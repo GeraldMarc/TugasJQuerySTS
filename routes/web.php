@@ -10,10 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
+    return redirect('Product/Home/');
+});
+Route::get('Product/Home/', function () {
     return view('product/index');
 });
-Route::get('Product/Detail/{id}', function ($id) {
+Route::get('Product/Detail/{id}/', function ($id) {
     return view('product/detail', compact('id'));
+});
+Route::get('Product/Add/', function () {
+    return view('product/forms/add-product');
 });
