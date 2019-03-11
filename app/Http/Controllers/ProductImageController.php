@@ -10,6 +10,14 @@ class ProductImageController extends Controller
     public function GetWithParam($product_id){
         $images = ProductImage::where('product_id', $product_id)->get();
         
+        foreach($images as $image){
+            // CHECK IF IMAGE IS PLACEHOLDER (FOR TESTING PURPOSES)
+            $image_url = $image->product_image_url;
+            if(!str_contains($image_url, 'lorempixel')){
+                $image->product_image_url = '/product_images/'.$image_url;
+            }
+        }
+
         return response()->json([
             'message' => 'success',
             'data' => $images
@@ -19,6 +27,7 @@ class ProductImageController extends Controller
     public function Store(Request $request, $product_id){
         // PROCESS MAIN IMAGE
         $main_file_name = "";
+
         if($request->hasFile('main_product_image'))
         {
             $main_file = $request->file('main_product_image');

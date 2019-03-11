@@ -68,7 +68,7 @@
             description = $('#description').val();
             unit_price = $('#unit_price').val();
             product_category_id = $('#product_category_id').val();
-            main_product_image = [$('#main_product_image')[0].files[0],];
+            main_product_image = $('#main_product_image')[0].files[0];
             $.each($('#product_image_list')[0].files, function(i, item){
                 product_image_list[i] = $('#product_image_list')[0].files[i];
             });
@@ -122,25 +122,7 @@
         });
 
         $(document).ready(function() {
-            /* $.ajax({
-                url: '/api/Product/Store',
-                type: 'GET',
-                success: function (data) {
-                    $.each(data.data, function (i, item) {
-                        $('#products_list > tbody').append('<tr>'
-                                                                + '<td><img class="product-image" src="' + item.product_image_url + '"></td>'
-                                                                + '<td>'
-                                                                    + '<a href="{{url("Product/Detail/")}}/'+ item.id +'">' + item.name + '</a>'
-                                                                +'</td>' 
-                                                                + '<td>' + item.unit_price + '</td>'
-                                                                + '<td>'
-                                                                    + '<button onclick="editProduct('+ item.id +')">Edit</button>'
-                                                                    + '<button onclick="deleteProduct('+ item.id +')">Remove</button>'
-                                                                +'</td>'
-                                                        + '</tr>');
-                    });
-                }
-            }); */
+            
         });
     </script>
 @endsection

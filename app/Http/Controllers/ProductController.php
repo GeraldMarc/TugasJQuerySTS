@@ -11,12 +11,22 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function GetAll(){
+        // GET LIST OF PRODUCTS
         $products = Product::select('id','name','unit_price')->get();
 
+        // GET PRODUCT IMAGE FOR DISPLAY (USES MAIN IMAGE)
         $images = ProductImage::select('id','product_image_url','main_image','product_id')->where('main_image',true)->get();
 
+        // SET DISPLAY IMAGE FOR EACH PRODUCT
         foreach($products as $product){
-            $product->setAttribute('product_image_url', $images->where('product_id', $product->id)->first()->product_image_url);
+            // CHECK IF IMAGE IS PLACEHOLDER (FOR TESTING PURPOSES)
+            $image_url = $images->where('product_id', $product->id)->first()->product_image_url;
+            if(str_contains($image_url, 'lorempixel')){
+                $product->setAttribute('product_image_url', $image_url);
+            }
+            else{
+                $product->setAttribute('product_image_url', '/product_images/'.$image_url);
+            }
         }
 
         return response()->json([
