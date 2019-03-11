@@ -54,8 +54,6 @@
     <script>
         $('form').submit(function(event){
             event.preventDefault();
-            console.log($('#main_product_image'));
-            console.log($('#product_image_list')[0].files);
 
             var name;
             var description;
