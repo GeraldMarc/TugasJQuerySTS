@@ -62,8 +62,8 @@ class ProductController extends Controller
                 ], 200);
     }
 
-    public function Update(Request $request, $product_id){
-        $product = Product::find($product_id);
+    public function Update(Request $request, $id){
+        $product = Product::find($id);
         $product->name = $request->name;
         $product->description = $request->description;
         $product->unit_price = $request->unit_price;

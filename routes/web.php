@@ -22,3 +22,6 @@ Route::get('Product/Detail/{id}/', function ($id) {
 Route::get('Product/Add/', function () {
     return view('product/forms/add-product');
 });
+Route::get('Product/Edit/{id}/', function($id){
+    return view('product/forms/edit-product', compact('id'));
+});
