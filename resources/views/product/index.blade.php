@@ -26,13 +26,13 @@
         }
 
         function editProduct(product_id){
-            window.location.href = 'www.youtube.com';
+            window.location.href = '{{url("Product/Edit/")}}/' + product_id;
         }
 
         function deleteProduct(product_id){
             if(confirm('Do you want to delete this product?')){
                 $.ajax({
-                    url: '/api/Product/Delete/'+product_id,
+                    url: '/api/Product/Delete/' + product_id,
                     type: 'DELETE',
                     success: function (data) {
                         alert('Removed product successfully');
